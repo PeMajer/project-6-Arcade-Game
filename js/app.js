@@ -6,6 +6,8 @@ class Enemy {
 
         // The image/sprite for our enemies, this uses
         // a helper we've provided to easily load images
+        this.x = 0;
+        this.y = 229;
         this.sprite = 'images/enemy-bug.png';
     }
 
@@ -28,7 +30,9 @@ class Enemy {
 // a handleInput() method.
 class Player {
     constructor() {
-
+        this.x = 203;
+        this.y = 395;
+        this.sprite = 'images/char-boy.png';
     }
     update(dt) {
         // You should multiply any movement by the dt parameter
@@ -40,14 +44,22 @@ class Player {
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
+
+    handleInput() {
+
+    }
 }
-
-
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
+let allEnemies = [];
 
+let player = new Player;
+let enemy1 = new Enemy;
+
+
+allEnemies.push(enemy1);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
