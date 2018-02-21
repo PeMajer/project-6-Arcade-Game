@@ -5,8 +5,9 @@ class Enemy {
         // we've provided one for you to get started
         // The image/sprite for our enemies, this uses
         // a helper we've provided to easily load images
+        this.row = [63,146,229];
         this.x = x;
-        this.y = row[y];
+        this.y = this.row[y];
         this.speed = Math.floor(Math.random() * 280 + 70);
         this.sprite = 'images/enemy-bug.png';
     }
@@ -32,7 +33,7 @@ class Enemy {
     //pokud dojde brouk na konec plochy tak se vrati zpet na zacatek do nahodneho radku s nahodnou rychlosti
     reset() {
         this.x = -100;
-        this.y = row[Math.floor(Math.random() * 3 )];
+        this.y = this.row[Math.floor(Math.random() * 3 )];  //global variables
         this.speed = Math.floor(Math.random() * 280 + 70);
     }
 
@@ -94,7 +95,7 @@ class Player {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-const row = [63,146,229];
+
 let allEnemies = [];
 
 let player = new Player;
@@ -105,9 +106,9 @@ let enemy1 = new Enemy(1);
 allEnemies.push(enemy1);
 let enemy2 = new Enemy(2);
 allEnemies.push(enemy2);
-let enemy3 = new Enemy(0,-200);
+let enemy3 = new Enemy(0,-300);
 allEnemies.push(enemy3);
-let enemy4 = new Enemy(2,-200);
+let enemy4 = new Enemy(2,-300);
 allEnemies.push(enemy4);
 
 
