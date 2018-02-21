@@ -56,6 +56,10 @@ class Player {
     }
 
     update() {
+        if (this.y === -20 ) {
+            console.log("Winner");
+            this.reset();
+        }
 
     }
 
