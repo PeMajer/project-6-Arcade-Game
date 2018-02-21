@@ -1,13 +1,12 @@
 // Enemies our player must avoid
 class Enemy {
-    constructor() {
+    constructor(y,x = -100) {
         // Variables applied to each of our instances go here,
         // we've provided one for you to get started
-
         // The image/sprite for our enemies, this uses
         // a helper we've provided to easily load images
-        this.x = -100;
-        this.y = 229;
+        this.x = x;
+        this.y = row[y];
         this.speed = Math.floor(Math.random() * 280 + 70);
         this.sprite = 'images/enemy-bug.png';
     }
@@ -33,8 +32,7 @@ class Enemy {
     //pokud dojde brouk na konec plochy tak se vrati zpet na zacatek do nahodneho radku s nahodnou rychlosti
     reset() {
         this.x = -100;
-        const y = [63,146,229];
-        this.y = y[Math.floor(Math.random() * 3 )];
+        this.y = row[Math.floor(Math.random() * 3 )];
         this.speed = Math.floor(Math.random() * 280 + 70);
     }
 
@@ -56,6 +54,7 @@ class Player {
         this.y = 395;
         this.sprite = 'images/char-boy.png';
     }
+
     update() {
 
     }
@@ -91,13 +90,22 @@ class Player {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
+const row = [63,146,229];
 let allEnemies = [];
 
 let player = new Player;
-let enemy1 = new Enemy;
 
-
+let enemy0 = new Enemy(0);
+allEnemies.push(enemy0);
+let enemy1 = new Enemy(1);
 allEnemies.push(enemy1);
+let enemy2 = new Enemy(2);
+allEnemies.push(enemy2);
+let enemy3 = new Enemy(0,-200);
+allEnemies.push(enemy3);
+let enemy4 = new Enemy(2,-200);
+allEnemies.push(enemy4);
+
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
