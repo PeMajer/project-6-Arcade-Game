@@ -6,9 +6,9 @@ class Enemy {
 
         // The image/sprite for our enemies, this uses
         // a helper we've provided to easily load images
-        this.x = 0;
+        this.x = -100;
         this.y = 229;
-        this.speed = Math.floor(Math.random() * 5 + 1);
+        this.speed = Math.floor(Math.random() * 6 + 1);
         this.sprite = 'images/enemy-bug.png';
     }
 
@@ -19,11 +19,21 @@ class Enemy {
         // which will ensure the game runs at the same speed for
         // all computers.
         this.x = this.x + 50 * dt * this.speed;
+        if (this.x > 500) {
+            this.reset();
+        }
     }
 
     // Draw the enemy on the screen, required method for game
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
+    //pokud dojde brouk na konec plochy tak se vrati zpet na zacatek do nahodneho radku s nahodnou rychlosti
+    reset() {
+        this.x = -100;
+        const y = [63,146,229];
+        this.y = y[Math.floor(Math.random() * 3 )];
+        this.speed = Math.floor(Math.random() * 6 + 1);
     }
 };
 
