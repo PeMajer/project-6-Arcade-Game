@@ -22,20 +22,28 @@ class Enemy {
         if (this.x > 500) {
             this.reset();
         }
-        console.log(this.x);
-
+        this.checkCollisions();
     }
 
     // Draw the enemy on the screen, required method for game
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
+
     //pokud dojde brouk na konec plochy tak se vrati zpet na zacatek do nahodneho radku s nahodnou rychlosti
     reset() {
         this.x = -100;
         const y = [63,146,229];
         this.y = y[Math.floor(Math.random() * 3 )];
         this.speed = Math.floor(Math.random() * 280 + 70);
+    }
+
+    //x brouka je jeho zadek proto je potreba souradnici posunout, pokud by to bylo o sirku pole(101), tak by ke kolizi doslo
+    //na rozhrani pole, proto je posunut o 71 aby doslo ke kolizi az bude brouk vice najetej v poli s panackem
+    checkCollisions() {
+        if ((this.y === player.y) && ((this.x + 71) > player.x) && (this.x < (player.x + 71)) ) {
+            player.reset();
+        }
     }
 };
 
@@ -72,6 +80,11 @@ class Player {
                 if (this.x < 404) this.x += 101;
                 break;
         }
+    }
+
+    reset() {
+        this.x = 202;
+        this.y = 395;
     }
 }
 
