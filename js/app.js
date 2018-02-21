@@ -8,7 +8,7 @@ class Enemy {
         // a helper we've provided to easily load images
         this.x = -100;
         this.y = 229;
-        this.speed = Math.floor(Math.random() * 6 + 1);
+        this.speed = Math.floor(Math.random() * 280 + 70);
         this.sprite = 'images/enemy-bug.png';
     }
 
@@ -18,10 +18,12 @@ class Enemy {
         // You should multiply any movement by the dt parameter
         // which will ensure the game runs at the same speed for
         // all computers.
-        this.x = this.x + 50 * dt * this.speed;
+        this.x = this.x + dt * this.speed;
         if (this.x > 500) {
             this.reset();
         }
+        console.log(this.x);
+
     }
 
     // Draw the enemy on the screen, required method for game
@@ -33,7 +35,7 @@ class Enemy {
         this.x = -100;
         const y = [63,146,229];
         this.y = y[Math.floor(Math.random() * 3 )];
-        this.speed = Math.floor(Math.random() * 6 + 1);
+        this.speed = Math.floor(Math.random() * 280 + 70);
     }
 };
 
