@@ -8,6 +8,7 @@ class Enemy {
         // a helper we've provided to easily load images
         this.x = 0;
         this.y = 229;
+        this.speed = Math.floor(Math.random() * 5 + 1);
         this.sprite = 'images/enemy-bug.png';
     }
 
@@ -17,6 +18,7 @@ class Enemy {
         // You should multiply any movement by the dt parameter
         // which will ensure the game runs at the same speed for
         // all computers.
+        this.x = this.x + 50 * dt * this.speed;
     }
 
     // Draw the enemy on the screen, required method for game
