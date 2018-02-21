@@ -42,14 +42,12 @@ class Enemy {
 // a handleInput() method.
 class Player {
     constructor() {
-        this.x = 203;
+        this.x = 202;
         this.y = 395;
         this.sprite = 'images/char-boy.png';
     }
-    update(dt) {
-        // You should multiply any movement by the dt parameter
-        // which will ensure the game runs at the same speed for
-        // all computers.
+    update() {
+
     }
 
     // Draw the enemy on the screen, required method for game
@@ -60,16 +58,16 @@ class Player {
     handleInput(way) {
         switch (way) {
             case 'up':
-                this.y = this.y - 83;
+            if (this.y > 0) this.y -=  83;
                 break;
             case 'down':
-                this.y = this.y + 83;
+                if (this.y < 395) this.y +=  83;
                 break;
             case 'left':
-                this.x = this.x - 101;
+                if (this.x > 0) this.x -=  101;
                 break;
             case 'right':
-                this.x = this.x + 101;
+                if (this.x < 404) this.x += 101;
                 break;
         }
     }
