@@ -1,6 +1,6 @@
 // Enemies our player must avoid
 class Enemy {
-    constructor(y,x = -100) {
+    constructor(y,x = -100,minSpeed = 70) {
         // Variables applied to each of our instances go here,
         // we've provided one for you to get started
         // The image/sprite for our enemies, this uses
@@ -8,7 +8,7 @@ class Enemy {
         this.row = [63,146,229];
         this.x = x;
         this.y = this.row[y];
-        this.minSpeed = 70;
+        this.minSpeed = minSpeed;
         this.speed = Math.floor(Math.random() * (350 - this.minSpeed ) + this.minSpeed);
         this.sprite = 'images/enemy-bug.png';
     }
@@ -103,6 +103,22 @@ class Player {
         for (const enemy of allEnemies) {
             enemy.speedUp();
         }
+        if (this.score === 2) {
+            let enemy3 = new Enemy(0,-300,110);
+            allEnemies.push(enemy3);
+        }
+        if (this.score === 5) {
+            let enemy4 = new Enemy(1,-300,170);
+            allEnemies.push(enemy4);
+        }
+        if (this.score === 9) {
+            let enemy5 = new Enemy(0,-300,250);
+            allEnemies.push(enemy5);
+        }
+        if (this.score === 14) {
+            let enemy6 = new Enemy(0,-300,350);
+            allEnemies.push(enemy6);
+        }
     }
 
     reset() {
@@ -141,10 +157,6 @@ let enemy1 = new Enemy(1);
 allEnemies.push(enemy1);
 let enemy2 = new Enemy(2);
 allEnemies.push(enemy2);
-let enemy3 = new Enemy(0,-300);
-allEnemies.push(enemy3);
-let enemy4 = new Enemy(2,-300);
-allEnemies.push(enemy4);
 
 let scoreDiv;
 
