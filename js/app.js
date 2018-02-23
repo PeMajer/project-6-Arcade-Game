@@ -46,13 +46,7 @@ class Enemy {
     //x brouka je jeho zadek proto je potreba souradnici posunout, pokud by to bylo o sirku pole(101), tak by ke kolizi doslo
     //na rozhrani pole, proto je posunut o 71 aby doslo ke kolizi az bude brouk vice najetej v poli s panackem
     checkCollisions() {
-        if ((this.y === player.y) && ((this.x + 71) > player.x) && (this.x < (player.x + 71)) ) {
-            player.reset();
-            for (const enemy of allEnemies) {
-                enemy.minSpeed = 70;
-                enemy.reset();
-            }
-        }
+        if ((this.y === player.y) && ((this.x + 71) > player.x) && (this.x < (player.x + 71)) ) resetGame();
     }
 };
 
@@ -70,8 +64,7 @@ class Player {
     update() {
         if (this.y === -20 ) {
             this.scores();
-            this.x = 202;
-            this.y = 395;
+            this.reset();
         }
         scoreDiv.textContent = `Score: ${this.score}`;
     }
@@ -104,19 +97,19 @@ class Player {
             enemy.speedUp();
         }
         if (this.score === 2) {
-            let enemy3 = new Enemy(0,-300,110);
+            const enemy3 = new Enemy(0,-300,110);
             allEnemies.push(enemy3);
         }
         if (this.score === 5) {
-            let enemy4 = new Enemy(1,-300,170);
+            const enemy4 = new Enemy(1,-300,170);
             allEnemies.push(enemy4);
         }
         if (this.score === 9) {
-            let enemy5 = new Enemy(0,-300,250);
+            const enemy5 = new Enemy(0,-300,250);
             allEnemies.push(enemy5);
         }
         if (this.score === 14) {
-            let enemy6 = new Enemy(0,-300,350);
+            const enemy6 = new Enemy(0,-300,350);
             allEnemies.push(enemy6);
         }
     }
@@ -124,8 +117,6 @@ class Player {
     reset() {
         this.x = 202;
         this.y = 395;
-        player.score = 0;
-
     }
 }
 
@@ -142,7 +133,16 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
+function resetGame(params) {
+    player.score = 0;
+    player.reset();
+    allEnemies = [enemy0,enemy1,enemy2];
+    for (const enemy of allEnemies) {
+        enemy.minSpeed = 70;
+        enemy.reset();
+    }
 
+}
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
