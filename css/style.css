@@ -1,3 +1,7 @@
 body {
     text-align: center;
 }
+
+#score {
+    margin-bottom: -30px;
+}

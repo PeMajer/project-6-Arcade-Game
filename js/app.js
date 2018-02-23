@@ -89,8 +89,8 @@ class Player {
 
     scores() {
         this.score++;
-        console.log(this.score);
-
+        const scoreDiv = document.querySelector('#score');
+        scoreDiv.textContent = `Score: ${this.score}`;
     }
 
     reset() {
@@ -98,6 +98,20 @@ class Player {
         this.y = 395;
     }
 }
+
+// This listens for key presses and sends the keys to your
+// Player.handleInput() method. You don't need to modify this.
+document.addEventListener('keyup', function(e) {
+    var allowedKeys = {
+        37: 'left',
+        38: 'up',
+        39: 'right',
+        40: 'down'
+    };
+
+    player.handleInput(allowedKeys[e.keyCode]);
+});
+
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -118,16 +132,11 @@ allEnemies.push(enemy3);
 let enemy4 = new Enemy(2,-300);
 allEnemies.push(enemy4);
 
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("DOM fully loaded and parsed");
+    const can = document.querySelector('canvas');
+    can.insertAdjacentHTML('beforebegin','<div id="score">Score: 0</div>');
+  });
 
-// This listens for key presses and sends the keys to your
-// Player.handleInput() method. You don't need to modify this.
-document.addEventListener('keyup', function(e) {
-    var allowedKeys = {
-        37: 'left',
-        38: 'up',
-        39: 'right',
-        40: 'down'
-    };
 
-    player.handleInput(allowedKeys[e.keyCode]);
-});
+
