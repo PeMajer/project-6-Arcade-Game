@@ -38,7 +38,7 @@ class Enemy {
 
     //pokud dojde brouk na konec plochy tak se vrati zpet na zacatek do nahodneho radku s nahodnou rychlosti
     reset() {
-        this.x = -100;
+        this.x = Math.floor(Math.random() * (-400 + 100 ) - 100); // -400 az -100
         this.y = this.row[Math.floor(Math.random() * 3 )];  //global variables
         this.speed = Math.floor(Math.random() * (350 - this.minSpeed ) + this.minSpeed);
     }
@@ -102,8 +102,6 @@ class Player {
         this.score++;
         for (const enemy of allEnemies) {
             enemy.speedUp();
-            console.log(enemy.speed);
-
         }
     }
 
@@ -141,12 +139,12 @@ let enemy0 = new Enemy(0);
 allEnemies.push(enemy0);
 let enemy1 = new Enemy(1);
 allEnemies.push(enemy1);
-/*let enemy2 = new Enemy(2);
+let enemy2 = new Enemy(2);
 allEnemies.push(enemy2);
 let enemy3 = new Enemy(0,-300);
 allEnemies.push(enemy3);
 let enemy4 = new Enemy(2,-300);
-allEnemies.push(enemy4);*/
+allEnemies.push(enemy4);
 
 let scoreDiv;
 
