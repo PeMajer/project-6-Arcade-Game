@@ -31,11 +31,16 @@ class Enemy {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 
+    speedUp() {
+        if (this.minSpeed < 350) this.minSpeed += 20;
+        this.reset();
+    }
+
     //pokud dojde brouk na konec plochy tak se vrati zpet na zacatek do nahodneho radku s nahodnou rychlosti
     reset() {
         this.x = -100;
         this.y = this.row[Math.floor(Math.random() * 3 )];  //global variables
-        this.speed = Math.floor(Math.random() * 280 + 70);
+        this.speed = Math.floor(Math.random() * (350 - this.minSpeed ) + this.minSpeed);
     }
 
     //x brouka je jeho zadek proto je potreba souradnici posunout, pokud by to bylo o sirku pole(101), tak by ke kolizi doslo
@@ -43,6 +48,10 @@ class Enemy {
     checkCollisions() {
         if ((this.y === player.y) && ((this.x + 71) > player.x) && (this.x < (player.x + 71)) ) {
             player.reset();
+            for (const enemy of allEnemies) {
+                enemy.minSpeed = 70;
+                enemy.reset();
+            }
         }
     }
 };
@@ -91,6 +100,11 @@ class Player {
 
     scores() {
         this.score++;
+        for (const enemy of allEnemies) {
+            enemy.speedUp();
+            console.log(enemy.speed);
+
+        }
     }
 
     reset() {
@@ -127,12 +141,12 @@ let enemy0 = new Enemy(0);
 allEnemies.push(enemy0);
 let enemy1 = new Enemy(1);
 allEnemies.push(enemy1);
-let enemy2 = new Enemy(2);
+/*let enemy2 = new Enemy(2);
 allEnemies.push(enemy2);
 let enemy3 = new Enemy(0,-300);
 allEnemies.push(enemy3);
 let enemy4 = new Enemy(2,-300);
-allEnemies.push(enemy4);
+allEnemies.push(enemy4);*/
 
 let scoreDiv;
 
