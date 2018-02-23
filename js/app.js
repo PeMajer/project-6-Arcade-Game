@@ -8,7 +8,8 @@ class Enemy {
         this.row = [63,146,229];
         this.x = x;
         this.y = this.row[y];
-        this.speed = Math.floor(Math.random() * 280 + 70);
+        this.minSpeed = 70;
+        this.speed = Math.floor(Math.random() * (350 - this.minSpeed ) + this.minSpeed);
         this.sprite = 'images/enemy-bug.png';
     }
 
@@ -136,7 +137,6 @@ allEnemies.push(enemy4);
 let scoreDiv;
 
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("DOM fully loaded and parsed");
     const can = document.querySelector('canvas');
     can.insertAdjacentHTML('beforebegin','<div id="score">Score: 0</div>');
     scoreDiv = document.querySelector('#score');
