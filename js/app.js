@@ -60,9 +60,10 @@ class Player {
     update() {
         if (this.y === -20 ) {
             this.scores();
-            this.reset();
+            this.x = 202;
+            this.y = 395;
         }
-
+        scoreDiv.textContent = `Score: ${this.score}`;
     }
 
     // Draw the enemy on the screen, required method for game
@@ -89,13 +90,13 @@ class Player {
 
     scores() {
         this.score++;
-        const scoreDiv = document.querySelector('#score');
-        scoreDiv.textContent = `Score: ${this.score}`;
     }
 
     reset() {
         this.x = 202;
         this.y = 395;
+        player.score = 0;
+
     }
 }
 
@@ -132,10 +133,13 @@ allEnemies.push(enemy3);
 let enemy4 = new Enemy(2,-300);
 allEnemies.push(enemy4);
 
+let scoreDiv;
+
 document.addEventListener("DOMContentLoaded", function() {
     console.log("DOM fully loaded and parsed");
     const can = document.querySelector('canvas');
     can.insertAdjacentHTML('beforebegin','<div id="score">Score: 0</div>');
+    scoreDiv = document.querySelector('#score');
   });
 
 
