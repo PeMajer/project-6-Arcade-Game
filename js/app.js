@@ -54,11 +54,12 @@ class Player {
         this.x = 202;
         this.y = 395;
         this.sprite = 'images/char-boy.png';
+        this.score = 0;
     }
 
     update() {
         if (this.y === -20 ) {
-            console.log("Winner");
+            this.scores();
             this.reset();
         }
 
@@ -84,6 +85,12 @@ class Player {
                 if (this.x < 404) this.x += 101;
                 break;
         }
+    }
+
+    scores() {
+        this.score++;
+        console.log(this.score);
+
     }
 
     reset() {
