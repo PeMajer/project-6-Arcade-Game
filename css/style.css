@@ -4,4 +4,6 @@ body {
 
 #score {
     margin-bottom: -30px;
+    font-weight: 700;
+    font-size: 2em;
 }
