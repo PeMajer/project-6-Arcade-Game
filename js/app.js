@@ -141,7 +141,7 @@ function endGame() {
     if (player.score>0) {
         swal({			// popup windows with sweet alert 2
             title: 'GAME OVER!',
-            html: `<p>With score: ${player.score}.</p> <p>Insert your name for addition to leaderboard:</p>`,
+            html: `<p>Your score: ${player.score}</p> <p>Insert your name for addition to leaderboard:</p>`,
             input: 'text',
             type: 'error',
             confirmButtonText: 'Play again?',
@@ -194,7 +194,7 @@ allEnemies.push(enemy1);
 let enemy2 = new Enemy(2);
 allEnemies.push(enemy2);
 
-let scoreDiv;
+let scoreDiv, leaderBoard;
 
 document.addEventListener("DOMContentLoaded", function() {
     const can = document.querySelector('canvas');
@@ -204,3 +204,34 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
+
+
+
+
+
+
+
+//--------------------------STORAGE-----------------------------------------------------------------------
+/**
+* @description save data to local storage
+* @param {object} result - game record with name, moves, stars and time
+*/
+function addResult(result){
+	const data = localStorage.getItem('results');			// load data from local storage (from variable results)
+	if (data) {
+	  		let results = JSON.parse(data);
+	  		results.push(result);
+	  		localStorage.setItem('results', JSON.stringify(results));			// save results to storage
+	  	} else {
+	  		let results = [];			// create new local storage variable
+	  		results.push(result);
+	  		localStorage.setItem('results', JSON.stringify(results));			// save results to storage
+	  	}
+}
+
+/**
+* @description manual delete results from local storage
+*/
+function clearResults() {
+	localStorage.removeItem('results');
+}
