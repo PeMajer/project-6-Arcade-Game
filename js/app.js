@@ -138,6 +138,7 @@ document.addEventListener('keyup', function(e) {
 
 function endGame() {
     allEnemies = [];
+    const score = player.score;
     if (player.score>0) {
         swal({			// popup windows with sweet alert 2
             title: 'GAME OVER!',
@@ -148,8 +149,8 @@ function endGame() {
             confirmButtonColor: 'green'
         }).then((result) => {
             if (result.value) {
-                //const name = result.value;			// when name is enter
-                //addResult({name,move,star,time});	// save result to leaderboard - local storage
+                const name = result.value;			// when name is enter
+                addResult({name,score});	// save result to leaderboard - local storage
                 resetGame();		// create new game
             } else {
                 resetGame();
@@ -170,6 +171,7 @@ function endGame() {
 }
 
 function resetGame(params) {
+    leaderBoard();
     player.score = 0;
     player.reset();
     allEnemies = [enemy0,enemy1,enemy2];
@@ -194,40 +196,42 @@ allEnemies.push(enemy1);
 let enemy2 = new Enemy(2);
 allEnemies.push(enemy2);
 
-let scoreDiv, leaderBoard;
+let scoreDiv, leaderBoardDiv;
 
 document.addEventListener("DOMContentLoaded", function() {
     const can = document.querySelector('canvas');
     can.insertAdjacentHTML('beforebegin','<div id="score">Score: 0</div>');
+    can.insertAdjacentHTML('afterend','<div id="leaderboard"></div>');
     scoreDiv = document.querySelector('#score');
+    leaderBoardDiv = document.querySelector('#leaderboard');
+    leaderBoard();
   });
 
 
-//----------------------LEADERBOARD----------------------
+//----------------------LEADERBOARD--------------------------------------------------------------------------
 
 /**
 * @description show leaderboard
 */
-/*function leaderBoard() {
-	$('.leaderboard').remove();				// delete leaderboard
+function leaderBoard() {
+	leaderBoardDiv.innerHTML = '';			// delete leaderboard contain
 	const data = localStorage.getItem('results');		// load data from local storage (from variable results)
 	if (data) {
-  		const results = JSON.parse(data);					// save object to variable results
-  		results.sort((a, b) => a.move - b.move);			// sort this array of objects according to moves
-  		$('<div class="leaderboard"><h1>Leaderboard</h1></div>').insertAfter('.deck');			// display leaderboard
-
-  		for (const res of results ) {			// display leaderboard
-	  		$('.leaderboard').append('<div class="line"><div>' + res.name + '</div><span>' + res.move + ' moves</span><span>' + res.star + '</span><span>' + res.time + '</span></div>');
+        const results = JSON.parse(data);					// save object to variable results
+        leaderBoardDiv.insertAdjacentHTML('afterbegin','<div class="leaderboard">Leaderboard</div>');  // display leaderboard
+        results.sort((a, b) => b.score - a.score);			// sort this array of objects according to moves
+  		for (const res of results ) {			// display leaderboards results
+            leaderBoardDiv.insertAdjacentHTML('beforeend','<div class="line"><span>' + res.name + '</span><span>score: ' + res.score + '</span></div>');
 	  	}
 	}
-}*/
+}
 
 
 
 //--------------------------STORAGE-----------------------------------------------------------------------
 /**
 * @description save data to local storage
-* @param {object} result - game record with name, moves, stars and time
+* @param {object} result - game record with name and score
 */
 function addResult(result){
 	const data = localStorage.getItem('results');			// load data from local storage (from variable results)
