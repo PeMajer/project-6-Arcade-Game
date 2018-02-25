@@ -1,6 +1,6 @@
 // Enemies our player must avoid
 class Enemy {
-    constructor(y,x = -100,minSpeed = 70) {
+    constructor(y,x = -100,minSpeed = 80) {
         // Variables applied to each of our instances go here,
         // we've provided one for you to get started
         // The image/sprite for our enemies, this uses
@@ -9,7 +9,8 @@ class Enemy {
         this.x = x;
         this.y = this.row[y];
         this.minSpeed = minSpeed;
-        this.speed = Math.floor(Math.random() * (350 - this.minSpeed ) + this.minSpeed);
+        this.maxSpeed = 440;
+        this.speed = Math.floor(Math.random() * (this.maxSpeed - this.minSpeed ) + this.minSpeed);
         this.sprite = 'images/enemy-bug.png';
     }
 
@@ -32,7 +33,7 @@ class Enemy {
     }
 
     speedUp() {
-        if (this.minSpeed < 350) this.minSpeed += 20;
+        if (this.minSpeed < this.maxSpeed) this.minSpeed += 40;
         this.reset();
     }
 
@@ -40,7 +41,7 @@ class Enemy {
     reset() {
         this.x = Math.floor(Math.random() * (-400 + 100 ) - 100); // -400 az -100
         this.y = this.row[Math.floor(Math.random() * 3 )];  //global variables
-        this.speed = Math.floor(Math.random() * (350 - this.minSpeed ) + this.minSpeed);
+        this.speed = Math.floor(Math.random() * (this.maxSpeed - this.minSpeed ) + this.minSpeed);
     }
 
     //x brouka je jeho zadek proto je potreba souradnici posunout, pokud by to bylo o sirku pole(101), tak by ke kolizi doslo
@@ -97,19 +98,19 @@ class Player {
             enemy.speedUp();
         }
         if (this.score === 2) {
-            const enemy3 = new Enemy(0,-300,110);
+            const enemy3 = new Enemy(0,-300,160);
             allEnemies.push(enemy3);
         }
         if (this.score === 5) {
-            const enemy4 = new Enemy(1,-300,170);
+            const enemy4 = new Enemy(1,-300,280);
             allEnemies.push(enemy4);
         }
         if (this.score === 9) {
-            const enemy5 = new Enemy(0,-300,250);
+            const enemy5 = new Enemy(0,-300,440);
             allEnemies.push(enemy5);
         }
         if (this.score === 14) {
-            const enemy6 = new Enemy(0,-300,350);
+            const enemy6 = new Enemy(0,-300,440);
             allEnemies.push(enemy6);
         }
     }
