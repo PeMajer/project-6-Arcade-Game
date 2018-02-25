@@ -203,11 +203,24 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
 
+//----------------------LEADERBOARD----------------------
 
+/**
+* @description show leaderboard
+*/
+/*function leaderBoard() {
+	$('.leaderboard').remove();				// delete leaderboard
+	const data = localStorage.getItem('results');		// load data from local storage (from variable results)
+	if (data) {
+  		const results = JSON.parse(data);					// save object to variable results
+  		results.sort((a, b) => a.move - b.move);			// sort this array of objects according to moves
+  		$('<div class="leaderboard"><h1>Leaderboard</h1></div>').insertAfter('.deck');			// display leaderboard
 
-
-
-
+  		for (const res of results ) {			// display leaderboard
+	  		$('.leaderboard').append('<div class="line"><div>' + res.name + '</div><span>' + res.move + ' moves</span><span>' + res.star + '</span><span>' + res.time + '</span></div>');
+	  	}
+	}
+}*/
 
 
 
