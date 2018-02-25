@@ -39,7 +39,7 @@ class Enemy {
 
     //pokud dojde brouk na konec plochy tak se vrati zpet na zacatek do nahodneho radku s nahodnou rychlosti
     reset() {
-        this.x = Math.floor(Math.random() * (-400 + 100 ) - 100); // -400 az -100
+        this.x = Math.floor(Math.random() * (-360 - (this.minSpeed/2) + 100 ) - 100); // -400 az -100
         this.y = this.row[Math.floor(Math.random() * 3 )];  //global variables
         this.speed = Math.floor(Math.random() * (this.maxSpeed - this.minSpeed ) + this.minSpeed);
     }
@@ -47,7 +47,7 @@ class Enemy {
     //x brouka je jeho zadek proto je potreba souradnici posunout, pokud by to bylo o sirku pole(101), tak by ke kolizi doslo
     //na rozhrani pole, proto je posunut o 71 aby doslo ke kolizi az bude brouk vice najetej v poli s panackem
     checkCollisions() {
-        if ((this.y === player.y) && ((this.x + 71) > player.x) && (this.x < (player.x + 71)) ) resetGame();
+        if ((this.y === player.y) && ((this.x + 71) > player.x) && (this.x < (player.x + 71)) ) endGame();
     }
 };
 
@@ -133,6 +133,41 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+
+
+function endGame() {
+    allEnemies = [];
+    if (player.score>0) {
+        swal({			// popup windows with sweet alert 2
+            title: 'GAME OVER!',
+            html: `<p>With score: ${player.score}.</p> <p>Insert your name for addition to leaderboard:</p>`,
+            input: 'text',
+            type: 'error',
+            confirmButtonText: 'Play again?',
+            confirmButtonColor: 'green'
+        }).then((result) => {
+            if (result.value) {
+                //const name = result.value;			// when name is enter
+                //addResult({name,move,star,time});	// save result to leaderboard - local storage
+                resetGame();		// create new game
+            } else {
+                resetGame();
+            }
+        })
+    } else {
+        swal({			// popup windows with sweet alert 2
+            title: 'GAME OVER!',
+            type: 'error',
+            confirmButtonText: 'Play again?',
+            confirmButtonColor: 'green'
+        }).then((result) => {
+            resetGame();
+        })
+    }
+
+
+}
 
 function resetGame(params) {
     player.score = 0;
