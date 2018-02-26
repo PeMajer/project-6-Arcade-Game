@@ -200,7 +200,7 @@ let scoreDiv, leaderBoardDiv;
 
 document.addEventListener("DOMContentLoaded", function() {
     const can = document.querySelector('canvas');
-    can.insertAdjacentHTML('beforebegin','<div id="score">Score: 0</div>');
+    can.insertAdjacentHTML('beforebegin','<div id="score" class="sec-title">Score: 0</div>');
     can.insertAdjacentHTML('afterend','<div id="leaderboard"></div>');
     scoreDiv = document.querySelector('#score');
     leaderBoardDiv = document.querySelector('#leaderboard');
@@ -218,7 +218,7 @@ function leaderBoard() {
 	const data = localStorage.getItem('results');		// load data from local storage (from variable results)
 	if (data) {
         const results = JSON.parse(data);					// save object to variable results
-        leaderBoardDiv.insertAdjacentHTML('afterbegin','<div class="leaderboard">Leaderboard</div>');  // display leaderboard
+        leaderBoardDiv.insertAdjacentHTML('afterbegin','<span class="sec-title">Leaderboard</span>');  // display leaderboard
         results.sort((a, b) => b.score - a.score);			// sort this array of objects according to moves
   		for (const res of results ) {			// display leaderboards results
             leaderBoardDiv.insertAdjacentHTML('beforeend','<div class="line"><span>' + res.name + '</span><span>score: ' + res.score + '</span></div>');
