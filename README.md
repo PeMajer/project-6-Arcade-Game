@@ -18,7 +18,7 @@ Once the player reaches the water:
 ## Screenshots
 
 ![Game canvas](images/game.png)
-![Win Game](images/popup.png)
+![Win Game](images/popup2.png)
 ![Leaderboard](images/leader.png)
 
 ## Quickstart
