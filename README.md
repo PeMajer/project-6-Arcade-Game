@@ -17,8 +17,9 @@ Once the player reaches the water:
 
 ## Screenshots
 
-![Game deck](img/deck.png)
-![Win Game](img/win.png)
+![Game canvas](images/game.png)
+![Win Game](images/popup.png)
+![Leaderboard](images/leader.png)
 
 ## Quickstart
 Clone from GIT repository.
