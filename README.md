@@ -31,8 +31,6 @@ Open `index.html` in your browser.
 ## Leaderboard
 If you win game, you can save game stats to the leaderboard. Leaderboard stores game state using local storage.
 
-![Leaderboard](img/board.png)
-
 ## External
 Use [Sweet Alert 2](https://github.com/limonte/sweetalert2) to create popup window when win a game.
 
