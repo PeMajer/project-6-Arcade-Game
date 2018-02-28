@@ -45,3 +45,6 @@ body {
     width: 80px;
 }
 
+.hide {
+    display: none;
+}

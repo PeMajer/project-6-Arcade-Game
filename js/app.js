@@ -236,13 +236,16 @@ function leaderBoard() {
 	leaderBoardDiv.innerHTML = '';			// delete leaderboard contain
 	const data = localStorage.getItem('results');		// load data from local storage (from variable results)
 	if (data) {
+        leaderBoardDiv.classList.remove('hide');
         const results = JSON.parse(data);					// save object to variable results
         leaderBoardDiv.insertAdjacentHTML('afterbegin','<span class="sec-title">Leaderboard</span>');  // display leaderboard
         results.sort((a, b) => b.score - a.score);			// sort this array of objects according to moves
   		for (const res of results ) {			// display leaderboards results
             leaderBoardDiv.insertAdjacentHTML('beforeend','<div class="line"><span>' + res.name + '</span><span>score: ' + res.score + '</span></div>');
 	  	}
-	}
+	} else {
+        leaderBoardDiv.classList.add('hide');
+    }
 }
 
 
